@@ -38,17 +38,25 @@ export const Visor = styled.div`
     bottom: 0;
     display: flex;
     flex-direction: row-reverse;
+    align-items: flex-end;
     align-content: flex-end;
     justify-content: flex-start;
-    align-items: flex-end;
+    flex-wrap: nowrap;
+    user-select: none;
 `
 
 export const VisorContent = styled.div`
     font-size: 5.4rem;
-    padding: 0.8rem 1.5rem;
+    width: 100%;
+    height: 100%;
+    max-height: 113px;
+    justify-items: right;
+    padding: 0rem 1.5rem;
     overflow-x: overlay;
     transition: 0.3s easy-in-out;
     opacity: 0;
+    color: #ffffff;
+    user-select: none;
     animation: ${smothAppear} 1.6s linear forwards;
 `
 

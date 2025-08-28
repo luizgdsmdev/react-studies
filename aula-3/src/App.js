@@ -28,12 +28,9 @@ const App = () => {
             <Button value="1"/>
             <ButtonZero value="0"/>
             <Button value=","/>
-            
           </NumbersButtonWrapper>
 
           <OptionsButtonWrapper>
-
-
             <ButtonOptionSide value="÷"/>
             <ButtonOptionSide value="x"/>
             <ButtonOptionSide value="-"/>
