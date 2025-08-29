@@ -31,7 +31,7 @@ export const ContentWrapper = styled.div`
 export const Visor = styled.div`
     width: 100%;
     height: 100%;
-    max-height: 140px;
+    max-height: 160px;
     border-bottom: 1px solid #605220;
     overflow: hidden;
     justify-items: right;
@@ -49,12 +49,13 @@ export const VisorContent = styled.div`
     font-size: 5.4rem;
     width: 100%;
     height: 100%;
-    max-height: 113px;
+    max-height: 84%;
     justify-items: right;
-    padding: 0rem 1.5rem;
+    padding: 0.2rem 1.5rem 0;
     overflow-x: overlay;
     transition: 0.3s easy-in-out;
     opacity: 0;
+    overflow: hidden;
     color: #ffffff;
     user-select: none;
     animation: ${smothAppear} 1.6s linear forwards;

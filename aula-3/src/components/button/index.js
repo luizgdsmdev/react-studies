@@ -1,30 +1,30 @@
 import { Buttom, ButtomOptionSide, ButtomOptionTop, ButtomExpanded } from "./styles";
 
 export const Button = (props) => {
-    const {value} = props;
+    const {value, onClick} = props;
     return (
-        <Buttom>{value}</Buttom> 
+        <Buttom onClick={onClick}>{value}</Buttom> 
     ) 
 } 
 
 export const ButtonOptionSide = (props) => {
-    const {value} = props;
+    const {value, onClick} = props;
     return (
-        <ButtomOptionSide>{value}</ButtomOptionSide>
+        <ButtomOptionSide  onClick={onClick}>{value}</ButtomOptionSide>
     )
 } 
 
 export const ButtonOptionTop = (props) => {
-    const {value} = props;
+    const {value, onClick} = props;
     return (
-        <ButtomOptionTop>{value}</ButtomOptionTop>
+        <ButtomOptionTop onClick={onClick}>{value}</ButtomOptionTop>
     )
 } 
 
 export const ButtonZero = (props) => {
-    const {value} = props;
+    const {value, onClick} = props;
     return (
-        <ButtomExpanded>{value}</ButtomExpanded>
+        <ButtomExpanded onClick={onClick}>{value}</ButtomExpanded>
     )
 } 
 
