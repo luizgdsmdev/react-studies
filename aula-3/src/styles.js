@@ -21,7 +21,6 @@ export const Container = styled.div`
 export const ContentWrapper = styled.div`
     width: 100%;
     max-width: 600px;
-    border: 1px solid #605220;
     height: 100%;
     max-height: 800px;
     border-radius: 1rem;
@@ -32,7 +31,6 @@ export const Visor = styled.div`
     width: 100%;
     height: 100%;
     max-height: 160px;
-    border-bottom: 1px solid #605220;
     overflow: hidden;
     justify-items: right;
     bottom: 0;
