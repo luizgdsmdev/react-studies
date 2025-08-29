@@ -12,6 +12,7 @@ const App = () => {
     // Handle number and decimal point input
     if (!isNaN(valueIn) || valueIn === ".") {
       setCurrentValue((prev) => {
+        if (prev === "indefinite") return valueIn;
         if (prev === "0" && valueIn !== ".") return valueIn;
         if (valueIn === "." && prev.includes(".")) return prev;
         return prev + valueIn;
@@ -27,31 +28,62 @@ const App = () => {
 
     // Handle +/- (toggle sign)
     if (valueIn === "+/-") {
-      setCurrentValue((prev) => (parseFloat(prev) * -1).toString());
+      setCurrentValue((prev) => {
+        if (prev === "0" || prev === "indefinite") return prev;
+        return (parseFloat(prev) * -1).toString();
+      });
     }
 
     // Handle % (percentage)
     if (valueIn === "%") {
-      setCurrentValue((prev) => (parseFloat(prev) / 100).toString());
+      setCurrentValue((prev) => {
+        if (prev === "indefinite") return prev;
+        const currNum = parseFloat(prev);
+        if (isNaN(currNum)) return "indefinite";
+        if (previousValue && operation) {
+          const prevNum = parseFloat(previousValue);
+          if (isNaN(prevNum)) return "indefinite";
+          switch (operation) {
+            case "+":
+            case "-":
+              return (prevNum * (currNum / 100)).toString();
+            case "x":
+            case "÷":
+              return (currNum / 100).toString();
+            default:
+              return prev;
+          }
+        }
+        return (currNum / 100).toString();
+      });
     }
 
     // Handle operations (+, -, *, ÷)
     if (["+", "-", "x", "÷"].includes(valueIn)) {
-      if (currentValue !== "" && previousValue !== "") {
-        // Perform calculation if there's a pending operation
+      if (currentValue === "indefinite") return;
+      if (previousValue && operation && currentValue) {
+        // Perform calculation for pending operation
         const result = calculate(previousValue, currentValue, operation);
-        setPreviousValue(result.toString());
-        setCurrentValue("0");
-      } else {
-        // Store current value and operation
+        if (result === "indefinite") {
+          setCurrentValue("indefinite");
+          setPreviousValue("");
+          setOperation("");
+        } else {
+          setPreviousValue(result.toString());
+          setCurrentValue("0");
+          setOperation(valueIn);
+        }
+      } else if (currentValue && currentValue !== "indefinite") {
+        // Store current value as previous if no operation pending
         setPreviousValue(currentValue);
         setCurrentValue("0");
+        setOperation(valueIn);
       }
-      setOperation(valueIn);
     }
 
     // Handle equals
-    if (valueIn === "=" && previousValue !== "" && operation !== "") {
+    if (valueIn === "=" && previousValue && operation && currentValue) {
+      if (currentValue === "indefinite") return;
       const result = calculate(previousValue, currentValue, operation);
       setCurrentValue(result.toString());
       setPreviousValue("");
@@ -63,17 +95,19 @@ const App = () => {
   const calculate = (prev, curr, op) => {
     const prevNum = parseFloat(prev);
     const currNum = parseFloat(curr);
+    if (isNaN(prevNum) || isNaN(currNum)) return "indefinite";
     switch (op) {
       case "+":
-        return prevNum + currNum;
+        return (prevNum + currNum).toString();
       case "-":
-        return prevNum - currNum;
+        return (prevNum - currNum).toString();
       case "x":
-        return prevNum * currNum;
+        return (prevNum * currNum).toString();
       case "÷":
-        return currNum !== 0 ? prevNum / currNum : "Error";
+        if (currNum === 0) return "indefinite";
+        return (prevNum / currNum).toString();
       default:
-        return currNum;
+        return curr;
     }
   };
 
@@ -82,7 +116,9 @@ const App = () => {
       <ContentWrapper>
         <Visor>
           <VisorContent>
-            <VisorContentTextMin value={previousValue ? `${previousValue} ${operation}` : ""} />
+            <VisorContentTextMin
+              value={previousValue && operation ? `${previousValue} ${operation}` : ""}
+            />
             <VisorContentText value={currentValue} />
           </VisorContent>
         </Visor>
