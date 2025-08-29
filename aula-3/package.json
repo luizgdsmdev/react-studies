@@ -1,7 +1,7 @@
 {
   "name": "aula-3",
   "version": "0.1.0",
-  "private": true, 
+  "private": true,
   "homepage": "https://luizgdsmdev.github.io/react-studies/aula-3",
   "dependencies": {
     "@testing-library/jest-dom": "^6.5.0",
@@ -19,7 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build -r https://github.com/luizgdsmdev/react-studies.git -b gh-pages -o aula-3"
   },
   "eslintConfig": {
     "extends": [
