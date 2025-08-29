@@ -4,123 +4,116 @@ import { Button, ButtonOptionSide, ButtonOptionTop, ButtonZero } from "./compone
 import { useState } from "react";
 
 const App = () => {
-  const [currentNumber, setCurrentNumber] = useState('');
-  const [MincurrentNumber, MinsetCurrentNumber] = useState('');
-  let currentValueHolder = currentNumber;
+  const [currentValue, setCurrentValue] = useState("0");
+  const [previousValue, setPreviousValue] = useState("");
+  const [operation, setOperation] = useState("");
 
-
-
-  //Function for number display
   const handleClick = (valueIn) => {
-
-    //Add the values to the main visor
-    if(!isNaN(parseInt(valueIn)) || valueIn === "." || valueIn === "-"){
-        setCurrentNumber(previousNumber => {
-          if(Number(previousNumber) !== "0"){
-            return `${previousNumber}${valueIn}`;
-          }
-          return `${valueIn}`;
-          
-          
-        });
-    }
-    
-    //Check for cleaner and set main and secondary visor to empty
-    if(valueIn === "AC"){
-      setCurrentNumber(' ');
-      MinsetCurrentNumber('');
-
+    // Handle number and decimal point input
+    if (!isNaN(valueIn) || valueIn === ".") {
+      setCurrentValue((prev) => {
+        if (prev === "0" && valueIn !== ".") return valueIn;
+        if (valueIn === "." && prev.includes(".")) return prev;
+        return prev + valueIn;
+      });
     }
 
-    //Sum value, add the sum to secondary visor
-    if(valueIn === "+"){
-      if(!isNaN(parseInt(currentNumber)) || parseInt(currentNumber) <= 0){
-        setCurrentNumber(previousNumber => {
-          currentValueHolder = previousNumber;
-          if(parseInt(valueIn)){
-            return `${Number(previousNumber) + Number(valueIn)}`
-          }
+    // Handle AC (reset)
+    if (valueIn === "AC") {
+      setCurrentValue("0");
+      setPreviousValue("");
+      setOperation("");
+    }
 
-          return '';
-        });
+    // Handle +/- (toggle sign)
+    if (valueIn === "+/-") {
+      setCurrentValue((prev) => (parseFloat(prev) * -1).toString());
+    }
 
-        //Update the secondery visor with current sum
-        MinsetCurrentNumber(Number(MincurrentNumber) + Number(currentValueHolder));
+    // Handle % (percentage)
+    if (valueIn === "%") {
+      setCurrentValue((prev) => (parseFloat(prev) / 100).toString());
+    }
+
+    // Handle operations (+, -, *, ÷)
+    if (["+", "-", "x", "÷"].includes(valueIn)) {
+      if (currentValue !== "" && previousValue !== "") {
+        // Perform calculation if there's a pending operation
+        const result = calculate(previousValue, currentValue, operation);
+        setPreviousValue(result.toString());
+        setCurrentValue("0");
+      } else {
+        // Store current value and operation
+        setPreviousValue(currentValue);
+        setCurrentValue("0");
       }
+      setOperation(valueIn);
     }
 
-    //Subtraction funtion
-    if(valueIn === "-"){
-      if(!isNaN(parseInt(currentNumber)) || parseInt(currentNumber) <= 0){
-        setCurrentNumber(previousNumber => {
-          currentValueHolder = previousNumber;
-          if(parseInt(valueIn)){
-            return `${Number(previousNumber) - Number(valueIn)}`
-          }
-
-          return '';
-        });
-
-        //Update the secondery visor with current sum
-        console.log(Number(MincurrentNumber))
-        if(Number(MincurrentNumber) === 0){
-          MinsetCurrentNumber(Number(currentValueHolder));
-        }else{
-          MinsetCurrentNumber(Number(MincurrentNumber) - Number(currentValueHolder));
-        }
-      }
+    // Handle equals
+    if (valueIn === "=" && previousValue !== "" && operation !== "") {
+      const result = calculate(previousValue, currentValue, operation);
+      setCurrentValue(result.toString());
+      setPreviousValue("");
+      setOperation("");
     }
+  };
 
-    //Igual value, add the value to main visor
-    if(valueIn === "="){
-      setCurrentNumber((previousNumber) =>  Number(previousNumber) + Number(MincurrentNumber));
-      MinsetCurrentNumber('');
-      
+  // Calculate result based on operation
+  const calculate = (prev, curr, op) => {
+    const prevNum = parseFloat(prev);
+    const currNum = parseFloat(curr);
+    switch (op) {
+      case "+":
+        return prevNum + currNum;
+      case "-":
+        return prevNum - currNum;
+      case "x":
+        return prevNum * currNum;
+      case "÷":
+        return currNum !== 0 ? prevNum / currNum : "Error";
+      default:
+        return currNum;
     }
-    
-  }
-
+  };
 
   return (
     <Container>
       <ContentWrapper>
         <Visor>
-          <VisorContent> 
-            <VisorContentTextMin value={MincurrentNumber}/>
-            <VisorContentText value={currentNumber}/>
+          <VisorContent>
+            <VisorContentTextMin value={previousValue ? `${previousValue} ${operation}` : ""} />
+            <VisorContentText value={currentValue} />
           </VisorContent>
         </Visor>
         <ButtonWrapper>
           <NumbersButtonWrapper>
-            <ButtonOptionTop value="AC" onClick={() => handleClick('AC')}/>
-            <ButtonOptionTop value="+/-" onClick={() => handleClick('+/-')}/>
-            <ButtonOptionTop value="%" onClick={() => handleClick('%')}/>
-            
-            <Button value="9" onClick={() => handleClick('9')}/> 
-            <Button value="8" onClick={() => handleClick('8')}/> 
-            <Button value="7" onClick={() => handleClick('7')}/>
-            <Button value="6" onClick={() => handleClick('6')}/>
-            <Button value="5" onClick={() => handleClick('5')}/>
-            <Button value="4" onClick={() => handleClick('4')}/>
-            <Button value="3" onClick={() => handleClick('3')}/>
-            <Button value="2" onClick={() => handleClick('2')}/>
-            <Button value="1" onClick={() => handleClick('1')}/>
-            <ButtonZero value="0" onClick={() => handleClick('0')}/>
-            <Button value="." onClick={() => handleClick('.')}/>
+            <ButtonOptionTop value="AC" onClick={() => handleClick("AC")} />
+            <ButtonOptionTop value="+/-" onClick={() => handleClick("+/-")} />
+            <ButtonOptionTop value="%" onClick={() => handleClick("%")} />
+            <Button value="7" onClick={() => handleClick("7")} />
+            <Button value="8" onClick={() => handleClick("8")} />
+            <Button value="9" onClick={() => handleClick("9")} />
+            <Button value="4" onClick={() => handleClick("4")} />
+            <Button value="5" onClick={() => handleClick("5")} />
+            <Button value="6" onClick={() => handleClick("6")} />
+            <Button value="1" onClick={() => handleClick("1")} />
+            <Button value="2" onClick={() => handleClick("2")} />
+            <Button value="3" onClick={() => handleClick("3")} />
+            <ButtonZero value="0" onClick={() => handleClick("0")} />
+            <Button value="." onClick={() => handleClick(".")} />
           </NumbersButtonWrapper>
-
           <OptionsButtonWrapper>
-            <ButtonOptionSide value="÷" onClick={() => handleClick('÷')}/>
-            <ButtonOptionSide value="x" onClick={() => handleClick('x')}/>
-            <ButtonOptionSide value="-" onClick={() => handleClick('-')}/>
-            <ButtonOptionSide value="+" onClick={() => handleClick('+')}/>
-            <ButtonOptionSide value="=" onClick={() => handleClick('=')}/>
+            <ButtonOptionSide value="÷" onClick={() => handleClick("÷")} />
+            <ButtonOptionSide value="x" onClick={() => handleClick("x")} />
+            <ButtonOptionSide value="-" onClick={() => handleClick("-")} />
+            <ButtonOptionSide value="+" onClick={() => handleClick("+")} />
+            <ButtonOptionSide value="=" onClick={() => handleClick("=")} />
           </OptionsButtonWrapper>
         </ButtonWrapper>
       </ContentWrapper>
     </Container>
-
   );
-}
- 
+};
+
 export default App;
