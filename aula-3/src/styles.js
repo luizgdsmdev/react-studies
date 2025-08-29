@@ -59,6 +59,14 @@ export const VisorContent = styled.div`
     color: #ffffff;
     user-select: none;
     animation: ${smothAppear} 1.6s linear forwards;
+    
+    @media (max-width: 450px) {
+        font-size: 4rem;
+    }
+
+    @media (max-width: 375px) {
+        font-size: 3.5rem;
+    }
 `
 
 export const ButtonWrapper = styled.div`
@@ -94,4 +102,9 @@ export const OptionsButtonWrapper = styled.div`
     height: 100%;
     flex-wrap: nowrap;
     max-width: 8.1rem;
+
+    @media (max-width: 450px) {
+        max-width: 6.1rem;
+    }
+    
 `

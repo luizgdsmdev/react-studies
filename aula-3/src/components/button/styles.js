@@ -2,7 +2,6 @@ import {styled} from 'styled-components';
 
 
 export const Buttom = styled.button`
-    
     background-color: #333333;
     border: none;
     user-select: none;
@@ -21,7 +20,6 @@ export const Buttom = styled.button`
     &:hover {
         background-color: #3e3a3aff;
         transform: scale(1.03);
-        font-size: 3.3rem;
         outline: none;
         box-shadow: none;
         -webkit-user-select: none;
@@ -47,6 +45,20 @@ export const Buttom = styled.button`
         -ms-user-select: none;
         user-select: none;
         -webkit-tap-highlight-color: transparent;
+    }
+
+    @media (max-width: 768px) {
+        max-width: 5.7rem;
+        max-height: 5.7rem;
+    }
+    @media (max-width: 430px) {
+        max-width: 4.7rem;
+        max-height: 4.7rem;
+    }
+    @media (max-width: 375px) {
+        max-width: 3.9rem;
+        max-height: 3.9rem;
+        font-size: 2.5rem
     }
 `
 
@@ -67,7 +79,6 @@ export const ButtomExpanded = styled.button`
     &:hover {
         background-color: #484343ff;
         transform: scale(1.03);
-        font-size: 3.3rem;
         outline: none;
         box-shadow: none;
         -webkit-user-select: none;
@@ -94,6 +105,23 @@ export const ButtomExpanded = styled.button`
         user-select: none;
         -webkit-tap-highlight-color: transparent;
     }
+    @media (max-width: 768px) {
+        max-width: 13rem;
+        max-height: 5.7rem;
+    }
+    @media (max-width: 430px) {
+        max-width: 10rem;
+        max-height: 5.7rem;
+    }
+    @media (max-width: 375px) {
+        max-width: 8rem;
+        max-height: 4rem;
+        font-size: 2.5rem
+    }
+    @media (max-width: 315px) {
+        max-width: 3.9rem;
+        max-height: 3.9rem;
+    }
 `
 
 export const ButtomOptionSide = styled.button`
@@ -113,7 +141,6 @@ export const ButtomOptionSide = styled.button`
     &:hover {
         background-color: #e9951fff;
         transform: scale(1.03);
-        font-size: 3.3rem;
         outline: none;
         box-shadow: none;
         -webkit-user-select: none;
@@ -140,6 +167,19 @@ export const ButtomOptionSide = styled.button`
         user-select: none;
         -webkit-tap-highlight-color: transparent;
     }  
+     @media (max-width: 768px) {
+        max-width: 5.7rem;
+        max-height: 5.7rem;
+    }
+    @media (max-width: 430px) {
+        max-width: 4.7rem;
+        max-height: 4.7rem;
+    }
+    @media (max-width: 375px) {
+        max-width: 3.9rem;
+        max-height: 3.9rem;
+        font-size: 2.5rem
+    }
 `
 
 export const ButtomOptionTop = styled.button`
@@ -159,7 +199,6 @@ export const ButtomOptionTop = styled.button`
     &:hover {
         background-color: #b1ababff;
         transform: scale(1.03);
-        font-size: 3.3rem;
         outline: none;
         box-shadow: none;
         -webkit-user-select: none;
@@ -185,5 +224,18 @@ export const ButtomOptionTop = styled.button`
         -ms-user-select: none;
         user-select: none;
         -webkit-tap-highlight-color: transparent;
+    }
+    @media (max-width: 768px) {
+        max-width: 5.7rem;
+        max-height: 5.7rem;
+    }
+    @media (max-width: 430px) {
+        max-width: 4.7rem;
+        max-height: 4.7rem;
+        font-size: 2.2rem;
+    }
+    @media (max-width: 375px) {
+        max-width: 3.9rem;
+        max-height: 3.9rem;
     }
 `

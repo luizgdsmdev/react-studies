@@ -6,7 +6,7 @@ import { useState } from "react";
 const App = () => {
   const [currentNumber, setCurrentNumber] = useState('');
   const [MincurrentNumber, MinsetCurrentNumber] = useState('');
-  let valor = currentNumber;
+  let currentValueHolder = currentNumber;
 
 
 
@@ -14,7 +14,7 @@ const App = () => {
   const handleClick = (valueIn) => {
 
     //Add the values to the main visor
-    if(!isNaN(parseInt(valueIn)) || valueIn === "."){
+    if(!isNaN(parseInt(valueIn)) || valueIn === "." || valueIn === "-"){
         setCurrentNumber(previousNumber => {
           if(Number(previousNumber) !== "0"){
             return `${previousNumber}${valueIn}`;
@@ -36,7 +36,7 @@ const App = () => {
     if(valueIn === "+"){
       if(!isNaN(parseInt(currentNumber)) || parseInt(currentNumber) <= 0){
         setCurrentNumber(previousNumber => {
-          valor = previousNumber;
+          currentValueHolder = previousNumber;
           if(parseInt(valueIn)){
             return `${Number(previousNumber) + Number(valueIn)}`
           }
@@ -45,15 +45,30 @@ const App = () => {
         });
 
         //Update the secondery visor with current sum
-        MinsetCurrentNumber(Number(MincurrentNumber) + Number(valor));
-        
-        
+        MinsetCurrentNumber(Number(MincurrentNumber) + Number(currentValueHolder));
       }
     }
 
     //Subtraction funtion
     if(valueIn === "-"){
+      if(!isNaN(parseInt(currentNumber)) || parseInt(currentNumber) <= 0){
+        setCurrentNumber(previousNumber => {
+          currentValueHolder = previousNumber;
+          if(parseInt(valueIn)){
+            return `${Number(previousNumber) - Number(valueIn)}`
+          }
 
+          return '';
+        });
+
+        //Update the secondery visor with current sum
+        console.log(Number(MincurrentNumber))
+        if(Number(MincurrentNumber) === 0){
+          MinsetCurrentNumber(Number(currentValueHolder));
+        }else{
+          MinsetCurrentNumber(Number(MincurrentNumber) - Number(currentValueHolder));
+        }
+      }
     }
 
     //Igual value, add the value to main visor
