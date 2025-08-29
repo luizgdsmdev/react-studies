@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+/aula-3/
 /node_modules
 /.pnp
 .pnp.js
