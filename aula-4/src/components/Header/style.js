@@ -20,6 +20,7 @@ export const HeaderStyles = styled.header`
     align-content: center;
     justify-content: center;
     align-items: center;
+    margin-bottom: 2rem;
 `
 
 export const ImageLogo = styled.img`
