@@ -1,14 +1,15 @@
-import { MainContentWrapper, MainContentSearchHeader } from "./style";
-import { Search } from "../Imput";
-import {SearchButtonComponent} from "../Button"
+import { MainContentWrapper, SearchProfile } from "./style";
+import { MainContentComponent } from "./MainContentSearchHeader";
+import { SearchProfileTextComponent } from "./SearchProfileText";
+
 
 export function MainContent(){
     return ( 
         <MainContentWrapper>
-            <MainContentSearchHeader>
-                <Search /><SearchButtonComponent />
-            </MainContentSearchHeader>
-                
+            <SearchProfile>
+                <MainContentComponent/>
+                <SearchProfileTextComponent/>
+            </SearchProfile>
         </MainContentWrapper>
     );
 }

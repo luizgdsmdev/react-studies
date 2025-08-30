@@ -8,6 +8,7 @@ const showTextSearchButton = keyframes`
 
 
 export const SearchButton = styled.div`
+    -webkit-tap-highlight-color: transparent;
     background-color: rgba(45, 51, 59, 1);
     border: 2px solid rgba(153, 153, 153, 1);
     width: 100%;
