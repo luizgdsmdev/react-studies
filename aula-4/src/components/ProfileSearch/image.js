@@ -1,5 +1,5 @@
 import { ImageProfile } from "./style";
-import defaultProfileImage from "../../assets/ex-profile-img.png"
+import defaultProfileImage from "../../assets/aquarium-octopus.png"
 
 export function ImageProfileSearch(){
     return(
