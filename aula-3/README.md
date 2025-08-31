@@ -1,12 +1,13 @@
 # React Studies - Aula 3: Calculator
 
-This repository contains the code for a calculator application developed as part of the "React Studies" project, specifically the third lesson (`aula-3`). The application is built using React and styled with `styled-components`, demonstrating basic React concepts and component-based architecture.
+This repository contains the code for a calculator application developed as part of the "React Studies" project, specifically the third lesson (`aula-3`). The application is built using React and styled with `styled-components`, demonstrating basic React concepts and component-based architecture.   
+Live link: https://luizgdsmdev.github.io/react-studies/aula-3/
 
 ## Technologies and Techniques
 
 ### Technologies
 - **React**: A JavaScript library for building user interfaces, used to create reusable components for the calculator.
-- **React Scripts**: A set of scripts for creating and managing a React project, including development server and build tools.
+- **React Scripts**: A set of scripts for creating and managing a React project, including a development server and build tools.
 - **Styled-Components**: A CSS-in-JS library for styling React components with scoped and dynamic styles.
 - **JavaScript (ES6+)**: The primary programming language, utilizing modern features like arrow functions and modules.
 - **HTML/CSS**: Used via React's JSX syntax and styled-components for the structure and presentation of the calculator.
