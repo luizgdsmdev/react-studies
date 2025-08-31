@@ -1,70 +1,132 @@
-# Getting Started with Create React App
+# React Studies - Lesson 4: GitHub Profile Searcher
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is part of a series of React studies, focusing on Lesson 4. It implements an interactive GitHub profile searcher that retrieves user or organization profiles and their repositories. Features include searching by username, displaying profile details (avatar, name, bio), listing repositories, and smooth UI animations. The app leverages React’s Context API for global state management, styled-components for modern styling, and asynchronous GitHub API integration.
 
-## Available Scripts
+The goal is to demonstrate advanced React techniques for real-world applications, including custom hooks, conditional rendering, API error handling, and mobile optimizations (e.g., removing tap highlight effects).
 
-In the project directory, you can run:
+Live link: https://luizgdsmdev.github.io/react-studies/aula-4/
 
-### `npm start`
+## ✨ Key Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Profile Search**: Enter a GitHub username (e.g., "uber" or "octocat") to fetch user or organization profiles via the GitHub API.
+- **Profile Display**: Shows avatar, name, login, bio, and other profile details.
+- **Repository Listing**: Loads and displays repositories with names and descriptions, supporting both users and organizations.
+- **Animations & UX**: Smooth hover effects with animated fill (ease-in-out), transitions, and autofill handling for inputs.
+- **State Management**: Uses Context API to share data across components (e.g., input, button, and listing) without prop drilling.
+- **Error & Loading Handling**: Displays loading states, API errors, and validates empty inputs.
+- **Responsive & Mobile-Friendly**: Removes tap highlight effects on mobile and applies transparent input styles.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Technologies and Techniques
 
-### `npm test`
+This project employs modern React practices and tools. Below is a summary of the key technologies and techniques used:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Technologies
+- **React (v18+)**: Core framework for building the UI, using functional components and JSX.
+- **JavaScript (ES6+)**: Base language, with async/await for API requests.
+- **Styled-Components**: CSS-in-JS library for dynamic styling (e.g., `SearchInput`, `ProfileInfoHolder`, `RepositoriesInfoHolder`) with CSS animations (@keyframes for hover fill effects).
+- **GitHub API**: External API integration for fetching user data (`/users/{username}`) and repositories (`/users/{username}/repos` or `/orgs/{username}/repos` for organizations like "uber").
+- **gh-pages**: Static site deployment to GitHub Pages (via `predeploy` and `deploy` scripts in package.json).
 
-### `npm run build`
+### React Techniques
+- **Hooks**:
+  - `useState`: Local state management for input values (`inputValue`) and loading states (`isLoading`).
+  - `useContext`: Custom hook (`useData`) for accessing the Context API and sharing global state (e.g., `data`, `repos`, `inputValue`).
+- **Context API**: Global state management without prop drilling. A `DataProvider` centralizes states and functions like `fetchData` and `fetchRepos`, enabling components in different directories (e.g., `Search`, `SearchButtonComponent`, `RepositoriesHolder`) to access shared data.
+- **Asynchronous Requests**: Uses `fetch` with async/await for API calls, with error handling (try/catch, `response.ok` checks) and loading states.
+- **Conditional Rendering**: Logic to display loading, errors, or content based on state (e.g., `{isLoading && <p>Loading...</p>}` or `{repos.map((repo) => ...)}`).
+- **CSS Animations**: Smooth transitions (`transition: width 0.3s ease-in-out`) and animations (@keyframes for input `::after` fill on hover). Uses `ease-in-out` for fluid UX.
+- **Form Optimizations**:
+  - Controlled inputs with `value` and `onChange`.
+  - Autofill override (`:-webkit-autofill` with `background-color: transparent` and `-webkit-text-fill-color` to maintain styles).
+  - Validation with `required` and alerts for empty inputs.
+- **Mobile & Accessibility**: `-webkit-tap-highlight-color: transparent` to remove tap effects on buttons and inputs.
+- **Component Structure**: Modularized components in separate files (e.g., `components/Search.js`, `components/style.js`) with props and Context for communication.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Key Dependencies (from package.json)
+- `react`, `react-dom`: React core.
+- `styled-components`: Styling.
+- `gh-pages`: Deployment.
+- No external API libraries (uses native browser `fetch`).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📁 Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+aula-4/
+├── src/
+│   ├── components/
+│   │   ├── Search.js              # Input component for search
+│   │   ├── SearchButtonComponent.js # Search button with onClick
+│   │   ├── RepositoriesHolder.js   # Repository listing with map
+│   │   ├── ProfileHolder.js        # Profile display (image + text)
+│   │   └── style.js                # Styled-components styles
+│   ├── context/
+│   │   └── DataContext.js          # Context API with useState and fetch
+│   ├── App.js                      # Main component with DataProvider
+│   └── index.js                    # React entry point
+├── package.json                    # Build and deploy scripts
+├── README.md                       # This file
+└── ... (other CRA files)
+```
 
-### `npm run eject`
+## 🚀 Installation and Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/luizgdsmdev/react-studies.git
+   cd react-studies/aula-4
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+   (Or `yarn install` if using Yarn.)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Run Locally**:
+   ```bash
+   npm start
+   ```
+   - The app runs at `http://localhost:3000`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. **Build for Production**:
+   ```bash
+   npm run build
+   ```
 
-## Learn More
+5. **Deploy to GitHub Pages**:
+   ```bash
+   npm run deploy
+   ```
+   - Access at `https://luizgdsmdev.github.io/react-studies` (update `homepage` in package.json if needed).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📖 Usage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Open the app in a browser.
+2. Enter a GitHub username in the input (e.g., "uber" for an organization or "octocat" for a user).
+3. Click "Search".
+4. View the loaded profile with avatar, details, and repository list.
+5. Hover over the input to see the red fill animation.
 
-### Code Splitting
+Example for "uber":
+- Profile: Displays Uber’s logo and organization bio.
+- Repositories: Lists items like "ludwig" with descriptions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🤝 Contributing
 
-### Analyzing the Bundle Size
+Feel free to fork the repository, create issues, or submit pull requests! As a study project, suggestions for improvements (e.g., adding more API fields, tests with Jest, or React Router routing) are welcome.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Fork the project.
+2. Create a branch (`git checkout -b feature/new-feature`).
+3. Commit changes (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature/new-feature`).
+5. Open a Pull Request.
 
-### Making a Progressive Web App
+## 📄 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-### Advanced Configuration
+## 🙏 Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **GitHub API**: For public user and repository data.
+- **React Documentation**: Foundation for hooks and Context API.
+- **Styled-Components**: For efficient styling.
