@@ -1,7 +1,7 @@
 # React Studies - Aula 3: Calculator
 
 This repository contains the code for a calculator application developed as part of the "React Studies" project, specifically the third lesson (`aula-3`). The application is built using React and styled with `styled-components`, demonstrating basic React concepts and component-based architecture.   
-Live link: https://luizgdsmdev.github.io/react-studies/aula-4/
+Live link: https://luizgdsmdev.github.io/react-studies/aula-3/
 
 ## Technologies and Techniques
 
