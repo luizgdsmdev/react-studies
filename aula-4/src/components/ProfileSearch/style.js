@@ -1,30 +1,42 @@
-import {styled} from 'styled-components';
+import styled, { keyframes }  from 'styled-components';
+
+const showImageProfile = keyframes`
+    to{
+        opacity: 1;
+        height: 100%;
+    }
+`
 
 export const ProfileSearchComponentHolder = styled.div`
+    width: 100%;
     background-color: transparent;
 `
 
 export const ImageProfile = styled.img`
     width: 100%;
     max-width: 9rem;
+    height: 0px;
     border-radius: 100%;
     background-color: transparent;
     background: transparent;
+    opacity: 0;
+    transition: height 3s ease-in-out forwards;
+    animation: ${showImageProfile} 3s ease-in-out forwards;
 `
 
 export const ProfileInfoTitle = styled.h3`
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     color: rgba(153, 153, 153, 1);
     background: transparent;
 `
 export const ProfileInfoID = styled.h5`
-    font-size: 1rem;
+    font-size: 2.5rem;
     color: rgba(153, 153, 153, 1);
     margin-bottom: 1.6rem;
     background: transparent;
 `
 export const ProfileInfotext = styled.p`
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: rgba(153, 153, 153, 1);
     background: transparent;
 `

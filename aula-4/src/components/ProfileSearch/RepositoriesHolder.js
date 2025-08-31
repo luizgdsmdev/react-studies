@@ -1,11 +1,13 @@
 import { RepositoriesInfoHolder, RepositorieTitle, RepositorieContext } from "./style";
+import { useData } from '../../context/DataContext';
 
-
-export function RepositoriesHolder(){
+export const RepositoriesHolder = (props) => {
+    let data = useData();
+    let {title, context} =props;
     return(
         <RepositoriesInfoHolder>
-            <RepositorieTitle>fisiotheapp-challenge</RepositorieTitle>
-            <RepositorieContext>Full Stack Developer web and mobile, passionate to javascript and all your ecosystem.</RepositorieContext>
+            <RepositorieTitle>{title}</RepositorieTitle>
+            <RepositorieContext>{context}</RepositorieContext>
         </RepositoriesInfoHolder>
     );
 }
