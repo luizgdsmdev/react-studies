@@ -1,11 +1,13 @@
 import { RepositoryHolder, RepositoriesTitle } from "./style";
 import { RepositoriesHolder } from "./RepositoriesHolder";
+import { useData } from '../../context/DataContext';
 
 export function RepositoryComponent(){
+    const { data } = useData();
     return(
         <RepositoryHolder>
-            <RepositoriesTitle>Repositories</RepositoriesTitle>
-            <RepositoriesHolder title ='Luiz' context="Software Engineer"/>
+             {data && <RepositoriesTitle>Repositories</RepositoriesTitle>}
+            <RepositoriesHolder/>
         </RepositoryHolder>
     );
 }

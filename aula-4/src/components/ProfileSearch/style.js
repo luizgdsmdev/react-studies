@@ -53,7 +53,6 @@ export const ProfileInfoHolder = styled.div`
     background: transparent;
     padding: 0 1rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid hsl(0deg 0% 30%);
 `
 
 export const ProfileInfoTextHolder = styled.div`
@@ -73,17 +72,21 @@ export const RepositoryHolder = styled.div`
     justify-content: center;
     align-items: center;
     background: transparent;
-    padding: 1rem;
 `
 
 export const RepositoriesTitle = styled.h3`
     color: #ffffff;
     background: transparent;
     font-size: 1.9rem;
+    padding-top: 1rem;
+`
+export const RepositoriesInfoHolderWrapper = styled.div`
+    width: 100%;
+    background: transparent;
 `
 
 export const RepositoriesInfoHolder = styled.div`
-    width: 100%;
+    width: auto;
     height: auto;
     padding: 1.2rem;
     border-bottom: 1px solid hsl(0deg 0% 30%);
@@ -94,7 +97,7 @@ export const RepositorieTitle = styled.h6`
     color: rgba(83, 155, 245, 1);
     background: transparent;
     font-size: 1.3rem;
-    padding-bottom: 0.6rem
+    padding-bottom: 0.2rem
 `
 
 export const RepositorieContext = styled.p`
@@ -102,4 +105,7 @@ export const RepositorieContext = styled.p`
     background: transparent;
     font-size: 1rem;
     line-height: 1.6rem;
+    padding-bottom: 0.2rem;
+    white-space: pre-wrap;
+    word-break: break-all;
 `

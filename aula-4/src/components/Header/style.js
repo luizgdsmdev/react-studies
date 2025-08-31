@@ -21,6 +21,11 @@ export const HeaderStyles = styled.header`
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
+
+    @media (max-width: 675px) {
+        margin-bottom: 0rem;
+    }
+
 `
 
 export const ImageLogo = styled.img`

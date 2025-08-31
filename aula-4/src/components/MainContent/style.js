@@ -41,6 +41,7 @@ export const SearchProfile = styled.section`
     gap: 2rem;
     padding-top: 1rem;
     background: transparent;
+    padding-bottom: 9rem
 `
 
 export const SearchProfileText = styled.section`
@@ -55,4 +56,11 @@ export const SearchProfileText = styled.section`
     gap: 2rem;
     padding-top: 1rem;
     background: transparent;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(45, 51, 59, 1) transparent;
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
 `

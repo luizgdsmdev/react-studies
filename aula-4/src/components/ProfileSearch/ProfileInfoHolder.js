@@ -1,10 +1,8 @@
-import { ProfileInfoID, ProfileInfotext } from "./style";
-import { ProfileInfoTextHolder } from "./style";
+import { ProfileInfoID, ProfileInfotext, ProfileInfoTextHolder } from "./style";
 import { useData } from '../../context/DataContext';
 
 export function ProfileInfoTextComponent(){
     let { data } = useData();
-
     return(
         <ProfileInfoTextHolder>
             <ProfileInfoID>{data ? (data.login) : ('')}</ProfileInfoID>
