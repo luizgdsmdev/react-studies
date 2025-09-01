@@ -1,8 +1,15 @@
-import React from 'react'
-import { LogoHeader, HeaderRightBlock, HeaderWrapper, HeaderLeftBlock, HeaderSearch, HeaderInputSearch, HeaderText } from './style'
+import { useState } from 'react';
+import { LogoHeader, MobileMenu, HeaderInputSearchMobile, HamburgerButton, HeaderRightBlock, HeaderWrapper, HeaderLeftBlock, HeaderSearch, HeaderInputSearch, HeaderText } from './style'
 import logoDio from "../../assets/logo-dio.png"
+import HeaderButton from '../button'
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+
   return (
     <HeaderWrapper>
       <HeaderLeftBlock>
@@ -10,18 +17,29 @@ export default function Header() {
         <HeaderSearch>
           <HeaderInputSearch type='text' maxLength={50} placeholder='Search our courses'/>
         </HeaderSearch>
-        <HeaderText>Live Coding</HeaderText>
-        <HeaderText>Global</HeaderText>
       </HeaderLeftBlock>
 
       <HeaderRightBlock>
           <HeaderText>Careers</HeaderText>
           <HeaderText>Bootcamps</HeaderText>
-          <HeaderText>Projects</HeaderText>
           <HeaderText>Community</HeaderText>
           <HeaderText>Plans</HeaderText>
           <HeaderText>Enterprises</HeaderText>
+          <HeaderButton text={'Login'}/>
       </HeaderRightBlock>
+      <HamburgerButton onClick={toggleMenu}>
+        {isMenuOpen ? '✕' : '☰'}
+      </HamburgerButton>
+
+      <MobileMenu isMenuOpen={isMenuOpen}>
+          <HeaderButton text={'Login'}/>
+          <HeaderInputSearchMobile type='text' maxLength={50} placeholder='Search our courses'/>
+          <HeaderText>Careers</HeaderText>
+          <HeaderText>Bootcamps</HeaderText>
+          <HeaderText>Community</HeaderText>
+          <HeaderText>Plans</HeaderText>
+          <HeaderText>Enterprises</HeaderText>
+      </MobileMenu>
 
     </HeaderWrapper>
   )
