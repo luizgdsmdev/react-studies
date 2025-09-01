@@ -33,7 +33,7 @@ export default function LoginForm() {
                 </svg>
                 <FormInput type='password' placeholder='Password' name='password'/>
             </FormInputWrapper>
-            <FormButton>Login</FormButton>
+            <FormButton onClick={(e) => e.preventDefault()}>Login</FormButton>
 
             <FormtextWrapper>
                 <Formtext>Forgot my password</Formtext>
