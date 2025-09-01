@@ -1,4 +1,11 @@
-import styled from "styled-components";
+  import styled, { keyframes } from 'styled-components';
+
+const menuMobileShowEffect = keyframes`
+    to {
+        transform: translateY(0rem);
+        backdrop-filter: blur(10px);
+    }
+`;
 
 export const HeaderWrapper = styled.header`
     width: 100dvw;
@@ -105,7 +112,7 @@ export const HeaderText = styled.p`
     cursor: pointer;
     position: relative;
     z-index: 1;
-    transition: width 2s easy-in-out;
+    transition: width 2s ease-in-out;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -145,13 +152,18 @@ export const MobileMenu = styled.nav`
   top: 60px; /* Adjust based on header height */
   left: 0;
   right: 0;
-  background-color: transparent;;
-  padding: 20px;
-  transition: height 2s easy-in-out;
-  backdrop-filter: blur(10px);
+  background-color: #000000cd;
+  padding: 1.5rem;
+  padding-top: 3rem;
+  transition: height 2s ease-in-out;
+  backdrop-filter: blur(0px);
+  z-index: 99;
+  transform: ${props => (props.isMenuOpen ? 'translateY(150rem)' : '')};
+  animation: ${menuMobileShowEffect} 0.6s ease-out forwards;
+  gap: 2.3rem;
 
   @media (max-width: 1025px) {
-    margin-top: 3rem;
+    margin-top: 2rem;
     height: 100%;
     place-items: center;
     isplay: ${props => (props.isMenuOpen ? 'flex' : 'none')};
@@ -169,7 +181,7 @@ export const HamburgerButton = styled.button`
   -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  transition: 2s easy-in-out;
+  transition: 2s ease-in-out;
 
   @media (max-width: 1024px) {
     display: block;

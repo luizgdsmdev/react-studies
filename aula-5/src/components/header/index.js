@@ -7,6 +7,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    if(!isMenuOpen){document.getElementById("root").style.overflow = "hidden"}else{document.getElementById("root").style.overflow = "auto"}
   };
 
 
