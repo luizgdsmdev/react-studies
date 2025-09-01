@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LogoHeader, MobileMenu, HeaderInputSearchMobile, HamburgerButton, HeaderRightBlock, HeaderWrapper, HeaderLeftBlock, HeaderSearch, HeaderInputSearch, HeaderText } from './style'
 import logoDio from "../../assets/logo-dio.png"
 import HeaderButton from '../button'
@@ -7,8 +7,15 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    if(!isMenuOpen){document.getElementById("root").style.overflow = "hidden"}else{document.getElementById("root").style.overflow = "auto"}
   };
+
+  // Control body overflow when menu is open
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
+    return () => {
+      document.body.style.overflow = 'auto'; // Cleanup on unmount
+    };
+  }, [isMenuOpen]);
 
 
   return (
@@ -32,7 +39,7 @@ export default function Header() {
         {isMenuOpen ? '✕' : '☰'}
       </HamburgerButton>
 
-      <MobileMenu isMenuOpen={isMenuOpen}>
+      <MobileMenu $isMenuOpen={isMenuOpen}>
           <HeaderButton text={'Login'}/>
           <HeaderInputSearchMobile type='text' maxLength={50} placeholder='Search our courses'/>
           <HeaderText>Careers</HeaderText>

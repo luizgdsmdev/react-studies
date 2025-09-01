@@ -144,8 +144,8 @@ export const HeaderText = styled.p`
 `;
 
 export const MobileMenu = styled.nav`
-  display: ${props => (props.isMenuOpen ? 'flex' : 'none')};
-  overflow: ${props => (props.isMenuOpen ? 'auto' : 'hidden')};
+  display: ${props => (props.$isMenuOpen ? 'flex' : 'none')};
+  overflow: ${props => (props.$isMenuOpen ? 'auto' : 'hidden')};
   flex-direction: column;
   gap: 15px;
   position: absolute;
@@ -158,7 +158,7 @@ export const MobileMenu = styled.nav`
   transition: height 2s ease-in-out;
   backdrop-filter: blur(0px);
   z-index: 99;
-  transform: ${props => (props.isMenuOpen ? 'translateY(150rem)' : '')};
+  transform: ${props => (props.$isMenuOpen ? 'translateY(150rem)' : '')};
   animation: ${menuMobileShowEffect} 0.6s ease-out forwards;
   gap: 2.3rem;
 
@@ -166,7 +166,7 @@ export const MobileMenu = styled.nav`
     margin-top: 2rem;
     height: 100%;
     place-items: center;
-    isplay: ${props => (props.isMenuOpen ? 'flex' : 'none')};
+    isplay: ${props => (props.$isMenuOpen ? 'flex' : 'none')};
   }
 `;
 
