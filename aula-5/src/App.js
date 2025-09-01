@@ -6,7 +6,7 @@ function App() {
   return (
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/react-studies/aula-5/login" element={<Login />} />
         </Routes>
   );
 }
