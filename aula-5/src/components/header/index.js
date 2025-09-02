@@ -4,7 +4,7 @@ import logoDio from "../../assets/logo-dio.png"
 import HeaderButton from '../button'
 import { Link } from "react-router";
 
-export default function Header() {
+export default function Header({ButtonLogin}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -34,7 +34,7 @@ export default function Header() {
           <HeaderText>Community</HeaderText>
           <HeaderText>Plans</HeaderText>
           <HeaderText>Enterprises</HeaderText>
-          <Link to="/login"><HeaderButton text={'Login'}/></Link>
+          <Link to="/login"><HeaderButton text={ButtonLogin}/></Link>
       </HeaderRightBlock>
       <HamburgerButton onClick={toggleMenu}>
         {isMenuOpen ? '✕' : '☰'}
