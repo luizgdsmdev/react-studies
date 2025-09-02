@@ -39,7 +39,7 @@ export default function LoginForm() {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('https://github.com/luizgdsmdev/react-studies/blob/master/aula-5/users.json');
+      const response = await axios.get('https://raw.githubusercontent.com/luizgdsmdev/react-studies/master/aula-5/users.json');
       setUsers(response.data);
     } catch (error) {
       console.error('User not found:', error);
@@ -59,7 +59,7 @@ export default function LoginForm() {
   const onSubmit = async (data) => {
     try {
       // Verifica se o usuário existe
-      const response = await axios.get('https://github.com/luizgdsmdev/react-studies/blob/master/aula-5/users.json', {
+      const response = await axios.get('https://raw.githubusercontent.com/luizgdsmdev/react-studies/master/aula-5/users.json', {
         params: { email: data.email, password: data.password },
       });
       if (response.data.length > 0) {
