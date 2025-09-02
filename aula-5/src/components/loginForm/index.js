@@ -62,19 +62,23 @@ export default function LoginForm() {
       const response = await axios.get('https://raw.githubusercontent.com/luizgdsmdev/react-studies/master/aula-5/users.json', {
         params: { email: data.email, password: data.password },
       });
-      if (response.data.length > 0) {
 
-        // Redirect to /profile with user id
-        navigate('/profile', { state: { user: response.data[0] } });
-        reset();
-      } else {
+      
+      if (response.data.users.length > 0) {
+        response.data.users.forEach(element => {
+          if((element.email === data.email) && (element.password === data.password)){
+            // Redirect to /profile with user id
+            navigate('/profile', { state: { user: response.data[0] } });
+            reset();
+          }else {
+            setError('login', {
+            type: 'manual',
+            message: `User don't exist or invalid credentials. Check again.`,
+          });
+          }
+        });
 
-        setError('login', {
-        type: 'manual',
-        message: `User don't exist or invalid credentials. Check again.`,
-      });
-
-      }
+      } 
     } catch (error) {
       console.error('Error logging in:', error);
       setError('login', {

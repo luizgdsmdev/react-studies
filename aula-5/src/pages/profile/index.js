@@ -19,6 +19,7 @@ export default function ProfilePage() {
         <BannerHomeDescription>+1,750 courses, bootcamps, projects and training in back-end, front-end, mobile, gaming, data, artificial intelligence and cloud careers to elevate your professional level and gain opportunities at the most sought-after companies in the world</BannerHomeDescription>
       </BannerHomeTextWrapper>
     </BannerHome>
+    
     </>
   );
 }
