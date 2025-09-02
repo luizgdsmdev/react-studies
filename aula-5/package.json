@@ -2,7 +2,7 @@
   "name": "aula-5",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:4000",
+  "proxy": "https://github.com/luizgdsmdev/react-studies/blob/master/aula-5/users.json",
   "homepage": "https://luizgdsmdev.github.io/react-studies/aula-5/",
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
