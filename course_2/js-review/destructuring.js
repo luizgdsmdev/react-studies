@@ -15,9 +15,9 @@ const data = [
         reviewsCount: 115421,
       },
       librarything: {
-        rating: 4.2,
-        ratingCount: 15024,
-        reviewsCount: 856,
+        rating: 5,
+        ratingCount: 895876,
+        reviewsCount: 95312,
       },
     },
   },
@@ -299,4 +299,23 @@ let [...genresList] = [...genres, "Terror"];
 let arrayList = [1, 2, 3, 4, 5, 6];
 let newArray = [...new Set([...arrayList, 6, 7, 8])];
 
-newArray;
+//Optional chaining
+function getTotalReviews(obj) {
+  let sumReviews = 0;
+
+  //regular approach
+  for (let reviewType in obj) {
+    sumReviews += obj[reviewType].reviewsCount;
+  }
+
+  //Optional chaining (with '?') approach (example only)
+  const goodreads = obj.goodreads?.reviewsCount || 0;
+  const librarything = obj.librarything?.reviewsCount || 0;
+  sumReviews = goodreads + librarything;
+
+  return sumReviews;
+}
+
+let reviwsList = { ...books[0].reviews };
+reviwsList;
+console.log(getTotalReviews(reviwsList));
