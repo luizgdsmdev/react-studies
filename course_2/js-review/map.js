@@ -262,58 +262,33 @@ const data = [
     },
   },
 ];
-
 function getBooks() {
   return data;
 }
 
-function getBook(id) {
-  return data.find((book) => book.id === id);
-}
+const booksApi = getBooks();
 
-let books = getBooks();
-//Destructuring object
-let { genres } = { ...books[0] };
+//Map() method
+let titlesList = booksApi.map((book) => book.title);
 
-//Destructuring an array, and using spread
-let [primaryGenre, ...related] = [...genres];
-
-//Destructuring an Object and adding new values
-let reviews = {
-  ...books[1].reviews,
-  movieRating: { rating: 4.9, ratingCount: 5421098, reviewsCount: 189256 },
-};
-
-//Destructuring an Object and overiding a value
-//Original: goodreads: { rating: 4.18, ratingCount: 5421098, reviewsCount: 189256 },
-let reviewsUpdate = {
-  ...books[1].reviews,
-  goodreads: { rating: 5, ratingCount: 999999999, reviewsCount: 999999999 },
-};
-
-//Destructuring an Array and adding new values
-//Orignial: ['Science Fiction', 'Adventure', 'Fantasy']
-let [...genresList] = [...genres, "Terror"];
-
-//Destructuring an Array and adding new values, plus destructuring a Set() to avoid duplicates
-let arrayList = [1, 2, 3, 4, 5, 6];
-let newArray = [...new Set([...arrayList, 6, 7, 8])];
-
-//Optional chaining
-function getTotalReviews(obj) {
-  let sumReviews = 0;
-
-  //regular approach
-  for (let reviewType in obj) {
-    sumReviews += obj[reviewType].reviewsCount;
+//Destructuring object for essentialInformation
+function reviewsCount(reviewsObj) {
+  let totalreviewCount = 0;
+  for (let reviewType in reviewsObj) {
+    if (typeof reviewsObj[reviewType].reviewsCount === "number") {
+      totalreviewCount += reviewsObj[reviewType].reviewsCount;
+    }
   }
-
-  //Optional chaining (with '?') approach (example only)
-  const goodreads = obj.goodreads?.reviewsCount || 0;
-  const librarything = obj.librarything?.reviewsCount || 0;
-  sumReviews = goodreads + librarything;
-
-  return sumReviews;
+  return totalreviewCount;
 }
 
-let reviwsList = { ...books[0].reviews };
+let essentialInformation = booksApi.map((book) => ({
+  id: book.id,
+  title: book.title,
+  author: book.author,
+  genre: book.genres,
+  publicationDate: book.publicationDate,
+  reviewsCount: reviewsCount(book.reviews),
+}));
+
+console.log(essentialInformation);
